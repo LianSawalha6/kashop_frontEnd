@@ -1,8 +1,9 @@
 import React from 'react'
 import useProducts from '../../hooks/useProducts'
-import { CircularProgress, Typography,Box, CardMedia, Grid } from '@mui/material'
+import { CircularProgress, Typography,Box, CardMedia, Grid, Button } from '@mui/material'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import { Link } from 'react-router-dom';
 
 
 export default function Products() {
@@ -23,6 +24,7 @@ export default function Products() {
       <Grid container spacing={{xs:2,md:3}}>
       {data.response.data.map((product)=>{
         return <Grid item key={product.id} size={{xs:12,sm:6,md:4}}>
+          <Link to={`/products/${product.id}`} style={{textDecoration:'none'}}>
           <Card  sx={{ display: 'flex', flexDirection: 'column', gap: 2, marginBottom: 2 }}>
           <CardMedia
             component="img"
@@ -34,6 +36,7 @@ export default function Products() {
             <Typography component="p" variant='p'>{product.price}</Typography>
           </CardContent>
         </Card>
+          </Link>
           </Grid>
       })}
 

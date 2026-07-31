@@ -4,7 +4,8 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Cart from "./pages/cart/Cart";
-import Products from "./pages/products/Products";
+// import Products from "./pages/products/Products";
+import ProductDetails from "./pages/product/ProductDetails";
 
 const router=createBrowserRouter([
   {
@@ -27,9 +28,13 @@ const router=createBrowserRouter([
       path:'cart',
       element:<Cart/>
     },
+    // {
+    //   path:'products',
+    //   element:<Products/>
+    // },
     {
-      path:'products',
-      element:<Products/>
+      path:'products/:productId',
+      element:<ProductDetails/>
     }
 
   ]
