@@ -1,0 +1,43 @@
+import React from 'react'
+import useProducts from '../../hooks/useProducts'
+import { CircularProgress, Typography,Box, CardMedia, Grid } from '@mui/material'
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+
+
+export default function Products() {
+
+  const {data,isLoading,isError,error}=useProducts()
+  if(isLoading){
+    return <CircularProgress/>
+    }
+  
+    if(isError){
+      return <Typography color="error">Error...</Typography>
+    }
+
+    console.log(data.response.data)
+    return (
+    <Box component="section" className="products">
+      <Typography component="h2" variant='h2'>Products</Typography>
+      <Grid container spacing={{xs:2,md:3}}>
+      {data.response.data.map((product)=>{
+        return <Grid item key={product.id} size={{xs:12,sm:6,md:4}}>
+          <Card  sx={{ display: 'flex', flexDirection: 'column', gap: 2, marginBottom: 2 }}>
+          <CardMedia
+            component="img"
+            image={product.image}
+          />
+          <CardContent>
+            <Typography component="h3" variant='h3'>{product.name}</Typography>
+            <Typography component="p" variant='p'>{product.rate}</Typography>
+            <Typography component="p" variant='p'>{product.price}</Typography>
+          </CardContent>
+        </Card>
+          </Grid>
+      })}
+
+      </Grid>
+    </Box>
+  )
+}
