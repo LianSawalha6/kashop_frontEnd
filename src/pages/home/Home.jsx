@@ -1,10 +1,11 @@
 import React from 'react'
-import Navbar from '../../components/navbar/Navbar'
+import Categories from '../../components/categories/Categories'
+
 
 export default function Home() {
   return (
     <>
-    <div>Home</div>
+      <Categories/>
     </>
     
   )
