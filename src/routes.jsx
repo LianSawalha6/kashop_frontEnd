@@ -6,6 +6,7 @@ import Register from "./pages/register/Register";
 import Cart from "./pages/cart/Cart";
 // import Products from "./pages/products/Products";
 import ProductDetails from "./pages/product/ProductDetails";
+import ProtectedRouter from "./ProtectedRouter";
 
 const router=createBrowserRouter([
   {
@@ -26,7 +27,10 @@ const router=createBrowserRouter([
     },
     {
       path:'cart',
-      element:<Cart/>
+      element:<ProtectedRouter>
+        <Cart/>
+      </ProtectedRouter>
+      
     },
     // {
     //   path:'products',
