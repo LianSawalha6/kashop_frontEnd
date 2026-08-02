@@ -9,9 +9,14 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup"
 import axios from 'axios';
 import { loginSchema } from '../../validations/LoginSchema';
+import useAuthStore from '../../store/useAuthStore';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
 
+    const navigate=useNavigate()
+
+  const setToken=useAuthStore((state)=>(state.setToken))
   const [serverErrors,setServerErrors]=useState([])
 
   const {register, handleSubmit,formState:{errors,isSubmitting}}=useForm({
@@ -20,7 +25,8 @@ export default function Login() {
   const loginForm=async (data)=>{
     try{
         const response=await axios.post(`${import.meta.env.VITE_BURL}/auth/Account/Login`,data)
-        localStorage.setItem('accessToken',response.data.accessToken)
+        setToken(response.data.accessToken)
+        navigate("/")
     }catch(error){
       setServerErrors(error.response.data.errors)
     }

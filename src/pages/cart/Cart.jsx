@@ -1,8 +1,13 @@
 import React from 'react'
 import { useEffect } from 'react'
 import authAxiosInstance from '../../api/authAxiosInstance'
+import useAuthStore from '../../store/useAuthStore'
+import { Button } from '@mui/material'
 
 export default function Cart() {
+
+  const token=useAuthStore((state)=>state.token)
+  console.log(token)
   const getItems= async()=>{
     try{
       const response=await authAxiosInstance.get('/Carts')
@@ -17,6 +22,8 @@ export default function Cart() {
     getItems()
   },[])
   return (
-    <div>Cart</div>
+    <>
+      <div>Cart</div>
+    </>
   )
 }
