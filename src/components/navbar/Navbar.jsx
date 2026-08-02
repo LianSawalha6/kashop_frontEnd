@@ -1,9 +1,13 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import useAuthStore from '../../store/useAuthStore'
+import useCart from '../../hooks/useCart'
 
 export default function Navbar() {
 
+  const {data}=useCart()
+  const cartCount=data?.items.length||0
+  console.log("cart data len",data.items.length)
   const navigate=useNavigate()
   const token =useAuthStore((state)=>state.token)
   const logout =useAuthStore((state)=>(state.logout))
@@ -22,7 +26,7 @@ export default function Navbar() {
     <Link to="/products">Products</Link>
     {token?
     <>
-    <Link to="/cart">cart</Link>
+    <Link to="/cart">cart {cartCount}</Link>
     <Link to="/" onClick={handleLogout}>logout</Link>
     </>
     :
