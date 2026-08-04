@@ -5,8 +5,11 @@ import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import useCategories from '../../hooks/useCategories';
+import { useTranslation } from 'react-i18next';
 
 export default function Categories() {
+    const {t}=useTranslation()
+  
   
   const {isLoading, isError, data} = useCategories();
 
@@ -19,7 +22,7 @@ export default function Categories() {
   }
   return (
     <Box component="section" className="home">
-      <Typography component="h2" variant='h2'>Categories</Typography>
+      <Typography component="h2" variant='h2'>{t("Categories")}</Typography>
       {data.response.data.map((category)=>{
         return <Typography key={category.id} component="h3" variant='h3'>{category.name}</Typography>
       })}

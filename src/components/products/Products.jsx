@@ -4,10 +4,13 @@ import { CircularProgress, Typography,Box, CardMedia, Grid, Button } from '@mui/
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 
 export default function Products() {
 
+  const {t}=useTranslation()
+  
   const {data,isLoading,isError,error}=useProducts()
   if(isLoading){
     return <CircularProgress/>
@@ -20,10 +23,10 @@ export default function Products() {
     console.log(data.response.data)
     return (
     <Box component="section" className="products">
-      <Typography component="h2" variant='h2'>Products</Typography>
+      <Typography component="h2" variant='h2'>{t("Products")}</Typography>
       <Grid container spacing={{xs:2,md:3}}>
       {data.response.data.map((product)=>{
-        return <Grid item key={product.id} size={{xs:12,sm:6,md:4}}>
+        return <Grid key={product.id} size={{xs:12,sm:6,md:4}}>
           <Link to={`/products/${product.id}`} style={{textDecoration:'none'}}>
           <Card  sx={{ display: 'flex', flexDirection: 'column', gap: 2, marginBottom: 2 }}>
           <CardMedia

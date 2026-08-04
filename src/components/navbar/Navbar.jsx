@@ -1,13 +1,20 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Link as RouterLink, useNavigate } from 'react-router-dom'
 import useAuthStore from '../../store/useAuthStore'
 import useCart from '../../hooks/useCart'
-
+import { useTranslation } from 'react-i18next'
+import i18n from '../../i18next'
+import { Button } from '@mui/material'
 export default function Navbar() {
 
+  const {t}=useTranslation()
+  const changeLanguage=()=>{
+    const newLng=i18n.language==="ar"?"en":"ar"
+    i18n.changeLanguage(newLng)
+  }
   const {data}=useCart()
-  const cartCount=data?.items.length||0
-  console.log("cart data len",data.items.length)
+  const cartCount=data?.items.length??0
+  console.log("cart data len",data?.items.length)
   const navigate=useNavigate()
   const token =useAuthStore((state)=>state.token)
   const logout =useAuthStore((state)=>(state.logout))
@@ -22,17 +29,20 @@ export default function Navbar() {
   }
   return (
     <>
-    <Link to="/">Home</Link>
-    <Link to="/products">Products</Link>
+    <Button onClick={changeLanguage}>
+      {i18n.language==='ar'?"ar":"en"}
+    </Button>
+    <Link to="/">{t("Home")} </Link>
+    <Link to="/products">{t("Products")} </Link>
     {token?
     <>
-    <Link to="/cart">cart {cartCount}</Link>
-    <Link to="/" onClick={handleLogout}>logout</Link>
+    <Link to="/cart">{t("Cart")} {cartCount} </Link>
+    <Link to="/" onClick={handleLogout}>{t("Logout")} </Link>
     </>
     :
     <>
-    <Link to="/login">login</Link>
-    <Link to="/register">register</Link>
+    <Link to="/login">{t("Login")} </Link>
+    <Link to="/register">{t("Register")} </Link>
     </>
     }
 
