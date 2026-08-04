@@ -38,6 +38,7 @@ export default function Navbar() {
     <>
     <Link to="/cart">{t("Cart")} {cartCount} </Link>
     <Link to="/" onClick={handleLogout}>{t("Logout")} </Link>
+    <Link to="/profile" >{t("Profile")} </Link>
     </>
     :
     <>
