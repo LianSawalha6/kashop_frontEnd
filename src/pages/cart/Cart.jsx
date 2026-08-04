@@ -9,10 +9,12 @@ import useUpdataCartItem from '../../hooks/useUpdataCartItem'
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { useTranslation } from 'react-i18next'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 export default function Cart() {
 
     const {t}=useTranslation()
+    const navigate=useNavigate()
   
   const {data,isLoading,isError,error}=useCart()
   const {mutate:removeItem,isPending}=useRemoveFromCart()
@@ -73,6 +75,11 @@ export default function Cart() {
           </TableBody>
         </Table>
       </TableContainer>
+
+      <Box>
+        <Button variant='contained' onClick={()=>navigate('/checkout')}>Process to Checkout</Button>
+        <Button onClick={()=>navigate('/')}>Continue shopping</Button>
+      </Box>
 
     </Box>
   )
