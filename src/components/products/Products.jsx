@@ -23,7 +23,7 @@ export default function Products() {
     console.log(data.response.data)
     return (
     <Box component="section" className="products">
-      <Typography component="h2" variant='h2'>{t("Products")}</Typography>
+      <Typography component="h2" variant='h2' color='primary'>{t("Products")}</Typography>
       <Grid container spacing={{xs:2,md:3}}>
       {data.response.data.map((product)=>{
         return <Grid key={product.id} size={{xs:12,sm:6,md:4}}>
