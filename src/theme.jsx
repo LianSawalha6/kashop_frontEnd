@@ -7,7 +7,7 @@ const getTheme=(mode)=>{
   palette:{
     mode:mode,
     primary:{
-      main:'#ff0000'
+      main:'#CA8A04'
     }
   },
   typography:{

@@ -8,6 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import i18n from '../../i18next'
 import useThemeStore from '../../store/useThemeStore'
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from "@mui/icons-material/LightMode";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
