@@ -3,6 +3,8 @@ import useProductDetails from "../../hooks/useProductDetails";
 import { useParams } from "react-router-dom";
 import {CircularProgress,Typography,Box,Button,Grid,Rating,Collapse,} from "@mui/material";
 import useAddToCart from "../../hooks/useAddToCart";
+import ReviewCard from "../../components/reviewCard/ReviewCard";
+import Reviews from "../../components/reviews/Reviews";
 
 export default function ProductDetails() {
   const [expanded, setExpanded] = useState(false);
@@ -31,13 +33,12 @@ export default function ProductDetails() {
       container
       spacing={6}
       sx={{
-        height: "100vh",
         display: "flex",
         alignItems: "center",
-        p: 3,
+        px: { xs: 4, md: 8 },
+        py: 5,
       }}
     >
-
       <Grid size={{ xs: 12, md: 6 }}>
         <Box
           sx={{
@@ -82,7 +83,6 @@ export default function ProductDetails() {
               bgcolor: "#F5F5F5",
               borderRadius: 2,
               cursor: "pointer",
-
               opacity: selectedImage === data.response.image ? 1 : 0.6,
 
               "&:hover": {
@@ -106,7 +106,6 @@ export default function ProductDetails() {
                 bgcolor: "#F5F5F5",
                 borderRadius: 2,
                 cursor: "pointer",
-
                 opacity: selectedImage === img ? 1 : 0.6,
 
                 "&:hover": {
@@ -121,7 +120,9 @@ export default function ProductDetails() {
       <Grid
         size={{ xs: 12, md: 6 }}
         sx={{
-          p: 2,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
         }}
       >
         <Typography
@@ -188,22 +189,30 @@ export default function ProductDetails() {
           </Typography>
         </Collapse>
 
-        <Button
-          onClick={() => setExpanded(!expanded)}
+        <Box
           sx={{
+            display: "flex",
+            justifyContent: "flex-end",
             mb: 3,
-            color: "#CA8A04",
-            textTransform: "none",
-            fontWeight: 600,
-
-            "&:hover": {
-              background: "transparent",
-              color: "#111",
-            },
           }}
         >
-          {expanded ? "Show less" : "Read more"}
-        </Button>
+          <Button
+            onClick={() => setExpanded(!expanded)}
+            sx={{
+              color: "#CA8A04",
+              textTransform: "none",
+              fontWeight: 600,
+              p: 0,
+
+              "&:hover": {
+                background: "transparent",
+                color: "#111",
+              },
+            }}
+          >
+            {expanded ? "Show less" : "Read more"}
+          </Button>
+        </Box>
 
         <Button
           fullWidth
@@ -217,6 +226,9 @@ export default function ProductDetails() {
         >
           Add to Cart
         </Button>
+      </Grid>
+      <Grid size={{ xs: 12 }}>
+        <Reviews id={productId} />
       </Grid>
     </Grid>
   );
