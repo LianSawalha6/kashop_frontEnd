@@ -219,7 +219,7 @@ export default function ProductDetails() {
           variant="contained"
           onClick={() => {
             addToCart({
-              productId: product.id,
+              productId: productId,
               count: 1,
             });
           }}
