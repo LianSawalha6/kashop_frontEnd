@@ -14,6 +14,7 @@ import {
   Chip,
   Rating,
   CardActions,
+  CardActionArea,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -34,6 +35,10 @@ const ProductCard = ({ ...product }) => {
         },
       }}
     >
+      <CardActionArea
+      component={Link}
+          to={`/products/${product.id}`}
+      >
       <Box
         sx={{
           p: 2,
@@ -110,6 +115,7 @@ const ProductCard = ({ ...product }) => {
           <ShoppingCartOutlinedIcon />
         </Button>
       </CardActions>
+      </CardActionArea>
     </Card>
   );
 };
