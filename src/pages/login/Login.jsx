@@ -10,7 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import axios from 'axios';
 import { loginSchema } from '../../validations/LoginSchema';
 import useAuthStore from '../../store/useAuthStore';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Login() {
 
@@ -32,13 +32,32 @@ export default function Login() {
     }
   }
   return (
-    <Box component="section" className="login">
-      <Typography component="h2" variant='h2'>Login</Typography>
+    <Box
+    component="section" sx={{
+      minHeight:"100vh",
+      display:"flex",
+      alignItems:"center",
+      justifyContent:"center"}}
+    >
+    <Box sx={{
+      width: "100%",
+      maxWidth:"500px",
+      p:4,
+      borderRadius:4,
+      boxShadow:2,
+    }}
+    >
+      <Typography component="h2" variant='h2'
+      sx={{
+        textAlign:"center",
+        py:6,
+        mb:5
+      }}>Login</Typography>
       { serverErrors?.length > 0? serverErrors.map((error)=>{
          return <Typography variant='body2' color='error'>{error}</Typography>
       }) :''}
 
-      <Box onSubmit={handleSubmit(loginForm)} component="form" className="login-form" sx={{marginTop:2, display:'flex', flexDirection:'column', gap:2}}>
+      <Box onSubmit={handleSubmit(loginForm)} component="form" className="login-form" sx={{mt:3, display:'flex', flexDirection:'column', gap:5}}>
         
         <TextField fullWidth {...register("email",{required:true})} label="Email" variant="outlined" 
         error={errors.email}
@@ -51,7 +70,11 @@ export default function Login() {
         <Button variant="contained" type="submit" disabled={isSubmitting}>
           {isSubmitting ? <CircularProgress size={24} /> : 'login'}
         </Button>
+        <Typography sx={{
+          textAlign:"center"
+        }}>Don't have an account?<Link to="/register">Sign up</Link></Typography>
       </Box>
+    </Box>
     </Box>
   )
 }
