@@ -10,6 +10,7 @@ import Checkout from "./pages/checkout/Checkout";
 import ProfileLayout from "./pages/profile/ProfileLayout";
 import ProfileInfo from "./pages/profile/ProfileInfo";
 import ProfileOrders from "./pages/profile/ProfileOrders";
+import SendCode from "./pages/sendCode/SendCode";
 
 const router=createBrowserRouter([
   {
@@ -33,7 +34,10 @@ const router=createBrowserRouter([
       element:<ProtectedRouter>
         <Cart/>
       </ProtectedRouter>
-      
+    },
+    {
+      path:"/sendCode",
+      element:<SendCode/>
     },
     // {
     //   path:'products',

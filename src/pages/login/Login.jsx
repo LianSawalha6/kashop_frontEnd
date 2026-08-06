@@ -63,10 +63,21 @@ export default function Login() {
         error={errors.email}
         helperText={errors.email?.message}
         />
+        <Box
+        sx={{
+          display:"flex",
+          flexDirection:"column",
+          alignItems:"flex-end",
+          gap:2
+        }}
+        >
+        <Link to="/sendCode">forget password?</Link>
         <TextField fullWidth {...register("password",{required:true})} label="Password" variant="outlined" 
         error={errors.password}
         helperText={errors.password?.message}
         />
+
+        </Box>
         <Button variant="contained" type="submit" disabled={isSubmitting}>
           {isSubmitting ? <CircularProgress size={24} /> : 'login'}
         </Button>
