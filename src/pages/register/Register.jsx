@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup"
 import axios from 'axios';
 import { registerSchema } from '../../validations/RegisterSchema';
+import { Link } from 'react-router-dom';
 
 export default function Register() {
 
@@ -26,13 +27,35 @@ export default function Register() {
     }
   }
   return (
-    <Box component="section" className="register">
-      <Typography component="h2" variant='h2'>Register</Typography>
+    <Box
+    sx={{
+       minHeight:"100vh",
+      display:"flex",
+      alignItems:"center",
+      justifyContent:"center"
+    }} 
+    >
+    <Box component="section" className="register"
+    sx={{
+      width: "100%",
+      maxWidth:"500px",
+      p:4,
+      borderRadius:4,
+      boxShadow:2,
+    }}
+    >
+      <Typography component="h2" variant='h2'
+       sx={{
+        textAlign:"center",
+        py:6,
+        mb:3
+      }}
+      >Register</Typography>
       { serverErrors?.length > 0? serverErrors.map((error)=>{
          return <Typography variant='body2' color='error'>{error}</Typography>
       }) :''}
 
-      <Box onSubmit={handleSubmit(registerForm)} component="form" className="register-form" sx={{marginTop:2, display:'flex', flexDirection:'column', gap:2}}>
+      <Box onSubmit={handleSubmit(registerForm)} component="form" className="register-form" sx={{ display:'flex', flexDirection:'column', gap:3}}>
         <TextField fullWidth {...register("userName",{required:true})}  label="Username" variant="outlined" 
         error={errors.userName}
         helperText={errors.userName?.message}
@@ -56,7 +79,11 @@ export default function Register() {
         <Button variant="contained" type="submit" disabled={isSubmitting}>
           {isSubmitting ? <CircularProgress size={24} /> : 'Register'}
         </Button>
+        <Typography sx={{
+          textAlign:"center"
+        }}>Already have an account?<Link to="/login">Log in</Link></Typography>
       </Box>
+    </Box>
     </Box>
   )
 }
